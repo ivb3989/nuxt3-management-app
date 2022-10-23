@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:json/recommended-with-comments",
+    "plugin:markdown/recommended",
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": "off",
+    "vue/multi-word-component-names": [
+      "error",
+      {
+        "ignores": ["index", "default", "account"]
+      }
+    ]
+  }
+}
