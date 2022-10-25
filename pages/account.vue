@@ -13,21 +13,20 @@
         placeholder="username"
       />
     </div>
-    <input
+    <button
       type="submit"
-      value="Update"
       class="mt-12 px-4 py-2 rounded bg-blue-500 hover:bg-blue-400 text-white font-semibold text-center block w-full focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500 focus:ring-opacity-80 cursor-pointer"
-    />
+    >
+      Update
+    </button>
   </form>
 </template>
 
 <script setup>
   definePageMeta({
-    middleware: ['auth'],
+    middleware: 'unauthorized',
   })
   const supabase = useSupabaseClient()
-
-  const username = ref('')
 
   const user = useSupabaseUser()
   const { data } = await supabase
@@ -35,17 +34,14 @@
     .select(`username`)
     .eq('id', user.value.id)
     .single()
-  if (data) {
-    username.value = data.username
-  }
 
-  async function updateProfile() {
+  const username = ref(data?.username)
+
+  const updateProfile = async () => {
     try {
-      const user = useSupabaseUser()
       const updates = {
         id: user.value.id,
         username: username.value,
-        updated_at: new Date(),
       }
       const { error } = await supabase.from('profiles').upsert(updates, {
         returning: 'minimal',
