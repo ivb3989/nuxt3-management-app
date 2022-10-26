@@ -52,11 +52,15 @@
     }
   }
 
-  onMounted(() => {
+  /* onMounted(() => {
     watchEffect(() => {
       if (!user.value) {
         navigateTo('/')
       }
     })
+  }) */
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_OUT') navigateTo('/')
   })
 </script>

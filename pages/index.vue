@@ -72,11 +72,15 @@
   }
 
   const user = useSupabaseUser()
-  onMounted(() => {
+  /* onMounted(() => {
     watchEffect(() => {
       if (user.value) {
         navigateTo('/account')
       }
     })
+  }) */
+
+  client.auth.onAuthStateChange((event) => {
+    if (event === 'SIGNED_IN') navigateTo('/account')
   })
 </script>
