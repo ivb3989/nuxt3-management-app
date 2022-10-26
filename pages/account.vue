@@ -28,7 +28,7 @@
   })
   const supabase = useSupabaseClient()
 
-  const user = useSupabaseUser()
+  const user = useSupabaseUser();
   const { data } = await supabase
     .from('profiles')
     .select(`username`)

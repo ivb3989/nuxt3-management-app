@@ -64,7 +64,7 @@
     console.log(error)
   }
   const login = async () => {
-    const { error } = await client.auth.signInWithPassword({
+    const { error } = await client.auth.signIn({
       email: form.email,
       password: form.password,
     })
