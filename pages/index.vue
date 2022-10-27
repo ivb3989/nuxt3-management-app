@@ -47,6 +47,7 @@
 <script setup>
   definePageMeta({
     middleware: 'authorized',
+    layout: 'authorized',
   })
 
   const form = reactive({
@@ -80,7 +81,9 @@
     })
   }) */
 
-  client.auth.onAuthStateChange((event) => {
-    if (event === 'SIGNED_IN') navigateTo('/account')
-  })
+  const router = useRouter()
+
+  /* client.auth.onAuthStateChange((event) => {
+    if (event === 'SIGNED_IN') return navigateTo('/account')
+  }) */
 </script>
