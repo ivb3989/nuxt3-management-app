@@ -28,11 +28,11 @@
   })
   const supabase = useSupabaseClient()
 
-  const user = useSupabaseUser();
+  const user = useSupabaseUser()
   const { data } = await supabase
     .from('profiles')
     .select(`username`)
-    .eq('id', user.value.id)
+    .eq('id', user.value?.id)
     .single()
 
   const username = ref(data?.username)
@@ -60,7 +60,9 @@
     })
   }) */
 
-  supabase.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_OUT') navigateTo('/')
-  })
+  const router = useRouter()
+
+  /* supabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_OUT') return navigateTo('/')
+  }) */
 </script>
